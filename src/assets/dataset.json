@@ -1,0 +1,328 @@
+{
+  "nodes": [
+    {
+      "id": "http://www.wikidata.org/entity/Q395",
+      "label": "mathematics",
+      "description": "field of study (numbers, quantity, structure, relationships, space, change)",
+      "group": 0,
+      "position": 0
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q41511",
+      "label": "universal language",
+      "description": "hypothetical language that is supposed to have been spoken by all or most of the world's population",
+      "group": 6,
+      "position": -1
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q4671286",
+      "label": "academic major",
+      "description": "academic discipline to which a student formally commits",
+      "group": 6,
+      "position": -1
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q11862829",
+      "label": "academic discipline",
+      "description": "concentration in one academic field of study or profession",
+      "group": 6,
+      "position": -1
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q475023",
+      "label": "exact science",
+      "description": "",
+      "group": 9,
+      "position": -1
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q816264",
+      "label": "formal science",
+      "description": "disciplines concerned with formal systems, such as logic, mathematics, and game theory",
+      "group": 9,
+      "position": -1
+    },
+    {
+      "id": "Mathematics",
+      "label": "Mathematics",
+      "description": "",
+      "group": 13,
+      "position": -1
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q30125896",
+      "label": "scientific hypothesis",
+      "description": "idea that proposes a tentative explanation about a phenomenon or a narrow set of phenomena observed in the natural world (primary features of a scientific hypothesis: falsifiability, testability)",
+      "group": 6,
+      "position": -2
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q2623733",
+      "label": "fictional language",
+      "description": "language in fictional stories",
+      "group": 9,
+      "position": -2
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q1047113",
+      "label": "specialty",
+      "description": "field limited to a specific area of ​​knowledge",
+      "group": 9,
+      "position": -2
+    },
+    {
+      "id": "Academic disciplines",
+      "label": "Academic disciplines",
+      "description": "",
+      "group": 13,
+      "position": -2
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q2465832",
+      "label": "branch of science",
+      "description": "field or discipline of science",
+      "group": 6,
+      "position": -2
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q336",
+      "label": "science",
+      "description": "study and knowledge",
+      "group": 9,
+      "position": -2
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q3968",
+      "label": "algebra",
+      "description": "topic in mathematics and definition is Algebra uses letters (like x or y) or other symbols in place of values, and plays with them using special rules.",
+      "group": 1,
+      "position": 1
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q8087",
+      "label": "geometry",
+      "description": "branch of mathematics that measures the shape, size and position of objects",
+      "group": 1,
+      "position": 1
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q12479",
+      "label": "number theory",
+      "description": "branch of pure mathematics devoted primarily to the study of the integers",
+      "group": 1,
+      "position": 1
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q12482",
+      "label": "set theory",
+      "description": "branch of mathematics that studies sets, which are collections of objects",
+      "group": 1,
+      "position": 1
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q12483",
+      "label": "statistics",
+      "description": "study of the collection, organization, analysis, interpretation, and presentation of data",
+      "group": 1,
+      "position": 1
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q42989",
+      "label": "topology",
+      "description": "subfield of mathematics",
+      "group": 1,
+      "position": 1
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q131476",
+      "label": "graph theory",
+      "description": "study of graphs, which are mathematical structures used to model pairwise relations between objects",
+      "group": 1,
+      "position": 1
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q149972",
+      "label": "calculus",
+      "description": "branch of mathematics",
+      "group": 1,
+      "position": 1
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q217413",
+      "label": "category theory",
+      "description": "logic and mathematics",
+      "group": 1,
+      "position": 1
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q5862903",
+      "label": "probability theory",
+      "description": "branch of mathematics concerned with probability",
+      "group": 1,
+      "position": 1
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q1192971",
+      "label": "network theory",
+      "description": "study of graphs as a representation of either symmetric relations or, more generally, of asymmetric relations between discrete objects",
+      "group": 1,
+      "position": 2
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q149999",
+      "label": "differential calculus",
+      "description": "subfield of calculus",
+      "group": 1,
+      "position": 2
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q150008",
+      "label": "integral calculus",
+      "description": "subfield of calculus",
+      "group": 1,
+      "position": 2
+    }
+  ],
+  "links": [
+    {
+      "source": "http://www.wikidata.org/entity/Q41511",
+      "target": "http://www.wikidata.org/entity/Q395",
+      "type": "instanceOf"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q4671286",
+      "target": "http://www.wikidata.org/entity/Q395",
+      "type": "instanceOf"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q11862829",
+      "target": "http://www.wikidata.org/entity/Q395",
+      "type": "instanceOf"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q475023",
+      "target": "http://www.wikidata.org/entity/Q395",
+      "type": "subclassOf"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q816264",
+      "target": "http://www.wikidata.org/entity/Q395",
+      "type": "subclassOf"
+    },
+    {
+      "source": "Mathematics",
+      "target": "http://www.wikidata.org/entity/Q395",
+      "type": "CommonCategory"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q30125896",
+      "target": "http://www.wikidata.org/entity/Q41511",
+      "type": "instanceOf"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q2623733",
+      "target": "http://www.wikidata.org/entity/Q41511",
+      "type": "subclassOf"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q11862829",
+      "target": "http://www.wikidata.org/entity/Q4671286",
+      "type": "subclassOf"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q1047113",
+      "target": "http://www.wikidata.org/entity/Q11862829",
+      "type": "subclassOf"
+    },
+    {
+      "source": "Academic disciplines",
+      "target": "http://www.wikidata.org/entity/Q11862829",
+      "type": "CommonCategory"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q2465832",
+      "target": "http://www.wikidata.org/entity/Q475023",
+      "type": "instanceOf"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q336",
+      "target": "http://www.wikidata.org/entity/Q475023",
+      "type": "subclassOf"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q2465832",
+      "target": "http://www.wikidata.org/entity/Q816264",
+      "type": "instanceOf"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q475023",
+      "target": "http://www.wikidata.org/entity/Q816264",
+      "type": "subclassOf"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q395",
+      "target": "http://www.wikidata.org/entity/Q3968",
+      "type": "hasPart"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q395",
+      "target": "http://www.wikidata.org/entity/Q8087",
+      "type": "hasPart"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q395",
+      "target": "http://www.wikidata.org/entity/Q12479",
+      "type": "hasPart"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q395",
+      "target": "http://www.wikidata.org/entity/Q12482",
+      "type": "hasPart"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q395",
+      "target": "http://www.wikidata.org/entity/Q12483",
+      "type": "hasPart"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q395",
+      "target": "http://www.wikidata.org/entity/Q42989",
+      "type": "hasPart"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q395",
+      "target": "http://www.wikidata.org/entity/Q131476",
+      "type": "hasPart"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q395",
+      "target": "http://www.wikidata.org/entity/Q149972",
+      "type": "hasPart"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q395",
+      "target": "http://www.wikidata.org/entity/Q217413",
+      "type": "hasPart"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q395",
+      "target": "http://www.wikidata.org/entity/Q5862903",
+      "type": "hasPart"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q131476",
+      "target": "http://www.wikidata.org/entity/Q1192971",
+      "type": "hasPart"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q149972",
+      "target": "http://www.wikidata.org/entity/Q149999",
+      "type": "hasPart"
+    },
+    {
+      "source": "http://www.wikidata.org/entity/Q149972",
+      "target": "http://www.wikidata.org/entity/Q150008",
+      "type": "hasPart"
+    }
+  ]
+}

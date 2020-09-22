@@ -1,0 +1,50 @@
+{
+  "nodes": [
+    {
+      "id": "1",
+      "label": "ECO:1",
+      "timecarrier": "2019034",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "2",
+      "label": "ECO:2",
+      "timecarrier": "2018041",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "3",
+      "label": "ECO:3",
+      "timecarrier": "2020011",
+      "x": 0,
+      "y": 0
+    }
+  ,
+    {
+      "id": "4",
+      "label": "ECO:4",
+      "timecarrier": "2020033",
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "links": [
+    {
+      "source": "1",
+      "target": "2",
+      "type": "before"
+    },
+    {
+      "source": "1",
+      "target": "3",
+      "type": "after"
+    },
+    {
+      "source": "2",
+      "target": "4",
+      "type": "after"
+    }
+  ]
+}
