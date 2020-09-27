@@ -2,7 +2,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 
 import * as d3 from 'd3';
 
-// import * as data from "./eco.json";
+// import * as data from './eco.json';
 
 @Component({
   selector: 'app-root',
@@ -11,17 +11,23 @@ import * as d3 from 'd3';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
+
   ngOnInit() {
+
+    const nodes: Node[] = [];
+    const links: Link[] = [];
 
     d3.json('assets/eco.json', (err, data) => {
       if (err) {
         throw new Error('Bad data file!');
       }
-      this.update(data);
+      data['nodes'].forEach(node => nodes.push(node));
+      data['links'].forEach(link => links.push(link));
+      this.update(nodes, links);
     });
   }
 
-  update(data) {
+  update(nodes: Node[], links: Link[]) {
     const nodeDescription = document.querySelector('.node-description');
     const colors = d3.scaleOrdinal(d3.schemeCategory10);
     const svg = d3.select('svg');
@@ -29,10 +35,11 @@ export class AppComponent implements OnInit {
     let height = +svg.attr('height');
     let edgelabels;
     let edgepaths;
-    const nodes = data['nodes'];
-    const links = data['links'];
     let link;
     let node;
+
+    const lineData = [];
+    let controlPointsArr = [];
 
     svg.append('defs').append('marker')
       .attr('id', 'arrowhead')
@@ -51,7 +58,9 @@ export class AppComponent implements OnInit {
       .attr('stroke-width', (d) => Math.sqrt(2));
 
     const simulation = d3.forceSimulation()
-      .force('link', d3.forceLink().id((d) => d['id'])
+      .force('link', d3.forceLink().id((d: Node) => {
+        return d.id;
+      })
         .distance(150).strength(1))
       .force('charge', d3.forceManyBody())
       .force('center', d3.forceCenter(width / 2, height / 2));
@@ -74,7 +83,7 @@ export class AppComponent implements OnInit {
       link = svg.append('g')
         .attr('class', 'links')
         .selectAll('line')
-        .data(data['links'])
+        .data(links)
         .enter()
         .append('line')
         .attr('x1', 100)
@@ -84,11 +93,11 @@ export class AppComponent implements OnInit {
         .attr('marker-end', 'url(#arrowhead)')
         .style('stroke', '#ccc')
         .style('pointer-events', 'none')
-        .attr('stroke-width', (d) => Math.sqrt(d['value']));
+        .attr('stroke-width', (d: any) => Math.sqrt(d.value));
 
       link.append('title')
-        .text(function (d) {
-          return d['type'];
+        .text(function (d: any) {
+          return d.type;
         });
 
       edgepaths = svg.selectAll('.edgepath')
@@ -98,7 +107,7 @@ export class AppComponent implements OnInit {
         .attr('class', 'edgepath')
         .attr('fill-opacity', 0)
         .attr('stroke-opacity', 0)
-        .attr('type', (i) => {
+        .attr('id', function (d, i: any) {
           return 'edgepath' + i;
         })
         .style('pointer-events', 'none');
@@ -110,22 +119,19 @@ export class AppComponent implements OnInit {
         .style('pointer-events', 'none')
 
         .attr('class', 'edgelabel')
-        .attr('type', (i) => {
-          return 'edgelabel' + i;
+        .attr('id', function(d, i: any) {
+          console.log('EDGE PATH', i);
+          return 'edgelabel' + i.target;
         })
         .attr('font-size', 10)
         .attr('fill', '#aaa');
 
       edgelabels.append('textPath')
-        .attr('xlink:href', (d, i) => {
-          return '#edgepath' + i;
-        })
+        .attr('xlink:href', (d, i) => '#edgepath' + i)
         .style('text-anchor', 'middle')
         .style('pointer-events', 'none')
         .attr('startOffset', '50%')
-        .text((d) => {
-          return d['type'];
-        });
+        .text((d) => d['type']);
 
       node = svg.selectAll('.node')
         .data(nodes)
@@ -135,13 +141,16 @@ export class AppComponent implements OnInit {
         .call(d3.drag()
           .on('start', dragstarted)
           .on('drag', dragged)
-        ).on('click', (d) => {
-          nodeDescription.innerHTML = d['label'] + ': ' + d['timecarrier'];
+        ).on('click', (d: Node) => {
+          nodeDescription.innerHTML = d.label + ': ' + d.timecarrier;
         });
 
       node.append('rect')
         .attr('width', 120)
         .attr('height', 50)
+        .attr('x', function (d: Node) {
+          return 0;
+        })
         .attr('x', 0)
         .attr('y', -25)
         .attr('rx', 5)
@@ -154,8 +163,8 @@ export class AppComponent implements OnInit {
         .style('cursor', 'pointer');
 
       node.append('title')
-        .text((d) => {
-          return d['label'];
+        .text((d: Node) => {
+          return d.label;
         });
 
       node.append('text')
@@ -168,8 +177,22 @@ export class AppComponent implements OnInit {
         .attr('text-anchor', 'middle')
         .attr('alignment-baseline', 'middle')
         .attr('pointer-events', 'none')
-        .text((d) => {
-          return d['label'];
+        .text((d: Node) => {
+          return d.label;
+        });
+
+      node.append('text')
+        .attr('x', 20)
+        .attr('y', 10)
+        .attr('dx', 12)
+        .attr('dy', '.35em')
+        .attr('font-size', 6)
+        .attr('font-family', 'Roboto, sans-serif')
+        .attr('text-anchor', 'middle')
+        .attr('alignment-baseline', 'middle')
+        .attr('pointer-events', 'none')
+        .text((d: Node) => {
+          return 'TimeCarrier: ' + d.timecarrier;
         });
 
       simulation.nodes(nodes).on('tick', ticked);
@@ -191,10 +214,10 @@ export class AppComponent implements OnInit {
           return d.target.y;
         });
 
-      node.attr('transform', (d) => 'translate(' + d.x + ', ' + d.y + ')');
+      node.attr('transform', (d: Node) => 'translate(' + d.x + ', ' + d.y + ')');
 
-      node.attr('x', (d) => d.x / 2)
-        .attr('y', (d) => d.y / 2);
+      node.attr('x', (d: Node) => d.x / 2)
+        .attr('y', (d: Node) => d.y / 2);
 
       edgepaths.attr('d', function (d) {
         return 'M ' + d.source.x + ' ' + d.source.y + ' L ' + d.target.x + ' ' + d.target.y;
@@ -248,32 +271,134 @@ export class AppComponent implements OnInit {
       .attr('marker-end', 'url(#pathMarkerHead)');
 
     function moveLink(l) {
-      const nsid = nodes.find(n => n.id === l.source.id);
-      const ndid = nodes.find(n => n.id === l.target.id);
+      if (l.source) {
+        const nsid: Node = nodes.find(n => n.id === l.source.id);
+        const ndid: Node = nodes.find(n => n.id === l.target.id);
 
-      let min = Number.MAX_SAFE_INTEGER;
-      let best;
-      [[60, -25], [60, 25], [120, 0], [0, 0]].forEach(s =>
-        [[60, -25], [60, 25], [120, 0], [0, 0]].forEach(d => {
-          const dist = Math.hypot(
-            (ndid.x + d[0]) - (nsid.x + s[0]),
-            (ndid.y + d[1]) - (nsid.y + s[1])
-          );
-          if (dist < min) {
-            min = dist;
-            best = {
-              s: {x: nsid.x + s[0], y: nsid.y + s[1]},
-              d: {x: ndid.x + d[0], y: ndid.y + d[1]}
-            };
-          }
+        let min = Number.MAX_SAFE_INTEGER;
+        let best;
+        [[60, -25], [60, 25], [120, 0], [0, 0]].forEach(s =>
+          [[60, -25], [60, 25], [120, 0], [0, 0]].forEach(d => {
+            const dist = Math.hypot(
+              (ndid.x + d[0]) - (nsid.x + s[0]),
+              (ndid.y + d[1]) - (nsid.y + s[1])
+            );
+            if (dist < min) {
+              min = dist;
+              best = {
+                s: {x: nsid.x + s[0], y: nsid.y + s[1]},
+                d: {x: ndid.x + d[0], y: ndid.y + d[1]}
+              };
+            }
+          })
+        );
+
+        const lineFunction = d3.line().x(d => {
+          return d['x'];
+        }).y(d => d['y']).curve(d3.curveLinear);
+
+        return lineFunction([best.s, best.d]);
+      }
+
+
+
+      function linkSetupFuncn() {
+
+        d3.selectAll('.links').remove();
+
+        const edges = svg.selectAll('linksOnUi')
+          .data(links)
+          .enter()
+          .insert('path', '.node')
+          // tslint:disable-next-line:no-shadowed-variable
+          .attr('class', 'linksOnUi').attr('id', function (l: Link) {
+            return l.type;
+          })
+          // tslint:disable-next-line:no-shadowed-variable
+          .attr('source', function(l) {
+            return l.source;
+          })
+          // tslint:disable-next-line:no-shadowed-variable
+          .attr('target', function(l) {
+            return l.target;
+          })
+          .attr('marker-end', 'url(#arrowHeadMarker)')
+          // tslint:disable-next-line:no-shadowed-variable
+          .attr('d', function(l: any) {
+            lineData.length = 0;
+            controlPointsArr = [];
+            const sourceNode = nodes.filter(function(d, i) {
+              return d.id === l.source;
+            })[0];
+            const targetNode = nodes.filter(function(d, i) {
+              return d.id === l.target;
+            })[0];
+
+            lineData.push({
+              'a': sourceNode.x + 25,
+              'b': sourceNode.y + 50
+            });
+            controlPointsArr.push(sourceNode.x + 25);
+            controlPointsArr.push(sourceNode.y + 50);
+
+            lineData.push({
+              'a': targetNode.x + 25,
+              'b': targetNode.y
+            });
+            controlPointsArr.push(targetNode.x + 25);
+            controlPointsArr.push(targetNode.y);
+            l.controlPoints = [];
+            controlPointsArr.forEach(point => l.controlPoints.push(point));
+            /*for (i = 0; i < controlPointsArr.length; i++) {
+              l.controlPoints.push(controlPointsArr[i]);
+            }*/
+            return null; // lineFunction(lineData);
+
+          }).style('stroke-width', '2').attr('stroke', 'blue').attr('fill', 'none');
+      }
+
+      /*const lineFunction = svg.append('path')
+        .attr('d', svg.line()
+          .y(function(d) { return d.y; })
+          .curve(d3.curveLinear)(lineData));*/
+
+      /*const lineFunction = svg.l
+        .x(function(d) {
+          return d.a;
         })
-      );
-
-      const lineFunction = d3.line().x(d => {
-        return d['x'];
-      }).y(d => d['y']).curve(d3.curveLinear);
-
-      return lineFunction([best.s, best.d]);
+        .y(function(d) {
+          return d.b;
+        })
+        .interpolate('linear');*/
     }
+  }
+}
+
+export class Node {
+  id: string;
+  label: string;
+  timecarrier: string;
+  x: number;
+  y: number;
+
+  constructor(object: Record<string, any>) {
+    this.id = object.id;
+    this.label = object.label;
+    this.timecarrier = object.timecarrier;
+    this.x = 0;
+    this.y = 0;
+  }
+}
+
+export class Link {
+
+  source: string;
+  target: string;
+  type: string;
+
+  constructor(object: Record<string, any>) {
+    this.source = object.source;
+    this.target = object.target;
+    this.type = object.type;
   }
 }
